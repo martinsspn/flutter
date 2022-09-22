@@ -4,7 +4,6 @@ import 'package:app_transparencia/ui/infoPage.dart';
 import 'package:app_transparencia/ui/ipi.dart';
 import 'package:app_transparencia/ui/ipva.dart';
 import 'package:flutter/material.dart';
-import 'package:pie_chart/pie_chart.dart';
 
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
@@ -118,7 +117,7 @@ class _RoyaltiePageState extends State<RoyaltiePage> {
               }).toList(),
               hint: const Text("Mês"),
             ),
-            PieChart(dataMap: dataMap),
+            // PieChart(dataMap: dataMap),
           ],
         ),
       ),
