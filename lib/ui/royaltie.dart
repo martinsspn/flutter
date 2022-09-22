@@ -2,22 +2,22 @@ import 'package:app_transparencia/ui/home.dart';
 import 'package:app_transparencia/ui/icms.dart';
 import 'package:app_transparencia/ui/infoPage.dart';
 import 'package:app_transparencia/ui/ipi.dart';
-import 'package:app_transparencia/ui/royaltie.dart';
+import 'package:app_transparencia/ui/ipva.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
-class IPVAPage extends StatefulWidget {
-  const IPVAPage({Key? key}) : super(key: key);
+class RoyaltiePage extends StatefulWidget {
+  const RoyaltiePage({Key? key}) : super(key: key);
 
-  final String title = "IPVA";
+  final String title = "Royalties";
 
   @override
-  State<IPVAPage> createState() => _IPVAPageState();
+  State<RoyaltiePage> createState() => _RoyaltiePageState();
 }
 
-class _IPVAPageState extends State<IPVAPage> {
+class _RoyaltiePageState extends State<RoyaltiePage> {
   // ignore: avoid_init_to_null
   String? dropdownValue = null;
 
@@ -36,12 +36,12 @@ class _IPVAPageState extends State<IPVAPage> {
       } else if (index == 1) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const ICMSPage()));
+      } else if (index == 2) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const IPVAPage()));
       } else if (index == 3) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const IPIPage()));
-      } else if (index == 4) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const RoyaltiePage()));
       }
     });
   }
@@ -145,7 +145,7 @@ class _IPVAPageState extends State<IPVAPage> {
             label: 'Royalties',
           ),
         ],
-        currentIndex: 2,
+        currentIndex: 4,
         selectedItemColor: Colors.amber[800],
         unselectedItemColor: const Color.fromARGB(255, 58, 53, 53),
         showUnselectedLabels: true,

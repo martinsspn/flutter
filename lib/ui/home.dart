@@ -1,23 +1,25 @@
-import 'package:app_transparencia/ui/home.dart';
+import 'dart:io';
+
 import 'package:app_transparencia/ui/icms.dart';
 import 'package:app_transparencia/ui/infoPage.dart';
 import 'package:app_transparencia/ui/ipi.dart';
+import 'package:app_transparencia/ui/ipva.dart';
 import 'package:app_transparencia/ui/royaltie.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
-class IPVAPage extends StatefulWidget {
-  const IPVAPage({Key? key}) : super(key: key);
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
 
-  final String title = "IPVA";
+  final String title = "Portal da Tranparência";
 
   @override
-  State<IPVAPage> createState() => _IPVAPageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _IPVAPageState extends State<IPVAPage> {
+class _MyHomePageState extends State<MyHomePage> {
   // ignore: avoid_init_to_null
   String? dropdownValue = null;
 
@@ -30,12 +32,12 @@ class _IPVAPageState extends State<IPVAPage> {
 
   void _onItemTapped(int index) {
     setState(() {
-      if (index == 0) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const MyHomePage()));
-      } else if (index == 1) {
+      if (index == 1) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const ICMSPage()));
+      } else if (index == 2) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const IPVAPage()));
       } else if (index == 3) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const IPIPage()));
@@ -52,6 +54,32 @@ class _IPVAPageState extends State<IPVAPage> {
       appBar: AppBar(
         title: Text(widget.title),
         centerTitle: true,
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_rounded,
+              color: Colors.white,
+              size: 30,
+            ),
+            onPressed: () {
+              showDialog<String>(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  title: const Text('Encerrar Aplicativo'),
+                  content: const Text('Tem certeza que deseja fechar o aplicativo?'),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, 'Cancelar'),
+                      child: const Text('Cancelar'),
+                    ),
+                    TextButton(
+                      onPressed: () => exit(0),
+                      child: const Text('Sair'),
+                    ),
+                  ],
+                ),
+              );
+            }),
         actions: [
           IconButton(
             icon: const Icon(
@@ -145,7 +173,7 @@ class _IPVAPageState extends State<IPVAPage> {
             label: 'Royalties',
           ),
         ],
-        currentIndex: 2,
+        currentIndex: 0,
         selectedItemColor: Colors.amber[800],
         unselectedItemColor: const Color.fromARGB(255, 58, 53, 53),
         showUnselectedLabels: true,
