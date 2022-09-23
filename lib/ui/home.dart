@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:app_transparencia/indicator.dart';
 import 'package:app_transparencia/ui/icms.dart';
@@ -23,8 +24,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String label = "Valor Total";
 
-  double valorTotal = 10330560320;
-  double valor = 10330560320;
+  double valorTotal = 10000000000 + Random().nextDouble() * 40000000000;
+  double valor = 0;
+
   bool showTotal = true;
   int lastTouched = -2;
   int x = 0;
@@ -126,6 +128,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               touchedIndex = pieTouchResponse
                                   .touchedSection!.touchedSectionIndex;
 
+                              bool firstInt = true;
+
+                              if (firstInt) {
+                                valor = valorTotal;
+                              }
+
                               if (touchedIndex == 0) {
                                 valor = valorTotal * (40 / 100);
                                 label = "Valor ICMS";
@@ -201,7 +209,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: const TextStyle(fontSize: 20, color: Colors.teal),
                 ),
                 Text(
-                  valor.toString(),
+                  "R\$ ${valor.toStringAsFixed(2)}",
                   style: const TextStyle(fontSize: 28),
                 ),
               ],

@@ -5,7 +5,46 @@ import 'package:app_transparencia/ui/ipi.dart';
 import 'package:app_transparencia/ui/royaltie.dart';
 import 'package:flutter/material.dart';
 
-const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
+import 'graficos/geradorGraficos.dart';
+
+const List<String> listMunicipio = <String>[
+  'Deixar em branco',
+  'Natal',
+  'Parnamirim',
+  'Mossoro',
+  'Caico',
+  'Currais Novos'
+];
+const List<String> listAno = <String>[
+  'Deixar em branco',
+  '2022',
+  '2021',
+  '2020',
+  '2019',
+  '2018',
+  '2017',
+  '2016',
+  '2015',
+  '2014',
+  '2013',
+  '2012',
+  '2011'
+];
+const List<String> listMes = <String>[
+  'Deixar em branco',
+  'Janeiro',
+  'Fevereiro',
+  'Março',
+  'Abril',
+  'Maio',
+  'Junho',
+  'Julho',
+  'Agosto',
+  'Setembro',
+  'Outubro',
+  'Novembro',
+  'Dezembro'
+];
 
 class IPVAPage extends StatefulWidget {
   const IPVAPage({Key? key}) : super(key: key);
@@ -18,14 +57,10 @@ class IPVAPage extends StatefulWidget {
 
 class _IPVAPageState extends State<IPVAPage> {
   // ignore: avoid_init_to_null
-  String? dropdownValue = null;
-
-  Map<String, double> dataMap = {
-    "ICMS": 45,
-    "IPVA": 30,
-    "IPI": 15,
-    "Royalties": 10
-  };
+  String? municipio = null;
+  String? ano = null;
+  String? mes = null;
+  int tipo = 0;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -70,14 +105,18 @@ class _IPVAPageState extends State<IPVAPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             DropdownButton<String>(
-              value: dropdownValue,
+              value: municipio,
               // isExpanded: true,
               onChanged: (String? value) {
                 setState(() {
-                  dropdownValue = value!;
+                  municipio = value;
+                  if (value == 'Deixar em branco') {
+                    municipio = null;
+                  }
                 });
               },
-              items: list.map<DropdownMenuItem<String>>((String value) {
+              items:
+                  listMunicipio.map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -86,14 +125,17 @@ class _IPVAPageState extends State<IPVAPage> {
               hint: const Text("Município"),
             ),
             DropdownButton<String>(
-              value: dropdownValue,
+              value: ano,
               // isExpanded: true,
               onChanged: (String? value) {
                 setState(() {
-                  dropdownValue = value!;
+                  ano = value;
+                  if (value == 'Deixar em branco') {
+                    ano = null;
+                  }
                 });
               },
-              items: list.map<DropdownMenuItem<String>>((String value) {
+              items: listAno.map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -102,14 +144,17 @@ class _IPVAPageState extends State<IPVAPage> {
               hint: const Text("Ano"),
             ),
             DropdownButton<String>(
-              value: dropdownValue,
+              value: mes,
               // isExpanded: true,
               onChanged: (String? value) {
                 setState(() {
-                  dropdownValue = value!;
+                  mes = value;
+                  if (value == 'Deixar em branco') {
+                    mes = null;
+                  }
                 });
               },
-              items: list.map<DropdownMenuItem<String>>((String value) {
+              items: listMes.map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -117,7 +162,8 @@ class _IPVAPageState extends State<IPVAPage> {
               }).toList(),
               hint: const Text("Mês"),
             ),
-            // PieChart(dataMap: dataMap),
+            GeradorGrafico(
+                imposto: "IPVA", municipio: municipio, ano: ano, mes: mes),
           ],
         ),
       ),
@@ -145,7 +191,7 @@ class _IPVAPageState extends State<IPVAPage> {
           ),
         ],
         currentIndex: 2,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.teal,
         unselectedItemColor: const Color.fromARGB(255, 58, 53, 53),
         showUnselectedLabels: true,
         onTap: _onItemTapped,
