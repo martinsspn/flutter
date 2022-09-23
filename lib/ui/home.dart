@@ -25,7 +25,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String label = "Valor Total";
 
-
   bool showTotal = true;
   int lastTouched = -2;
   int x = 0;
@@ -128,6 +127,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               }
                               touchedIndex = pieTouchResponse
                                   .touchedSection!.touchedSectionIndex;
+
+                              bool firstInt = true;
+
+                              if (firstInt) {
+                                valor = valorTotal;
+                              }
 
                               if (touchedIndex == 0) {
                                 valor = valorTotal * (40 / 100);
