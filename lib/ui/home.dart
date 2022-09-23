@@ -10,7 +10,8 @@ import 'package:app_transparencia/ui/royaltie.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
+double valorTotal = 10000000000 + Random().nextDouble() * 40000000000;
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -24,13 +25,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String label = "Valor Total";
 
-  double valorTotal = 10000000000 + Random().nextDouble() * 40000000000;
 
   bool showTotal = true;
   int lastTouched = -2;
   int x = 0;
 
   int touchedIndex = -1;
+  double valor = valorTotal;
+
 
   void _onItemTapped(int index) {
     setState(() {
@@ -52,7 +54,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    double valor = valorTotal;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
