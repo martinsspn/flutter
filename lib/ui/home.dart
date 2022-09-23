@@ -103,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-                "Acompanhe aqui os princípais repasses dos impostos no do governo do RN aos múnicipios do estado",
+                "Acompanhe aqui os princípais repasses dos impostos do governo do RN aos múnicipios do estado",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 20)),
             Row(
@@ -224,19 +224,19 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'Total',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
+            icon: Icon(Icons.add_shopping_cart_rounded),
             label: 'ICMS',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(Icons.car_rental),
             label: 'IPVA',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(Icons.align_vertical_bottom_outlined),
             label: 'IPI',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(Icons.monetization_on),
             label: 'Royalties',
           ),
         ],

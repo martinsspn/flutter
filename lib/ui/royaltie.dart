@@ -182,19 +182,19 @@ class _RoyaltiePageState extends State<RoyaltiePage> {
             label: 'Total',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
+            icon: Icon(Icons.add_shopping_cart_rounded),
             label: 'ICMS',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(Icons.car_rental),
             label: 'IPVA',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(Icons.align_vertical_bottom_outlined),
             label: 'IPI',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(Icons.monetization_on),
             label: 'Royalties',
           ),
         ],
