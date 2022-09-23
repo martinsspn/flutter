@@ -60,6 +60,10 @@ class _ICMSPageState extends State<ICMSPage> {
   String? ano = null;
   String? mes = null;
   int tipo = 0;
+  List<Color> gradientColors = [
+    const Color(0xff0293ee),
+    const Color(0xff02d39a),
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -165,7 +169,8 @@ class _ICMSPageState extends State<ICMSPage> {
                 imposto: widget.title,
                 municipio: municipio,
                 ano: ano,
-                mes: mes),
+                mes: mes,
+                gradientColors: gradientColors,),
           ],
         ),
       ),

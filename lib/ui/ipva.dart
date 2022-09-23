@@ -62,6 +62,11 @@ class _IPVAPageState extends State<IPVAPage> {
   String? mes = null;
   int tipo = 0;
 
+  List<Color> gradientColors = [
+    Color.fromARGB(255, 5, 109, 36),
+    Color.fromARGB(255, 10, 177, 74),
+  ];
+
   void _onItemTapped(int index) {
     setState(() {
       if (index == 0) {
@@ -163,7 +168,7 @@ class _IPVAPageState extends State<IPVAPage> {
               hint: const Text("Mês"),
             ),
             GeradorGrafico(
-                imposto: "IPVA", municipio: municipio, ano: ano, mes: mes),
+                imposto: "IPVA", municipio: municipio, ano: ano, mes: mes, gradientColors: gradientColors,),
           ],
         ),
       ),

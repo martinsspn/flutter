@@ -62,6 +62,10 @@ class _RoyaltiePageState extends State<RoyaltiePage> {
   String? mes = null;
   int tipo = 0;
 
+  List<Color> gradientColors = [
+    Color.fromARGB(255, 107, 73, 1),
+    Color.fromARGB(255, 211, 190, 2),
+  ];
   void _onItemTapped(int index) {
     setState(() {
       if (index == 0) {
@@ -166,7 +170,8 @@ class _RoyaltiePageState extends State<RoyaltiePage> {
                 imposto: widget.title,
                 municipio: municipio,
                 ano: ano,
-                mes: mes),
+                mes: mes,
+                gradientColors: gradientColors,),
           ],
         ),
       ),
@@ -194,7 +199,7 @@ class _RoyaltiePageState extends State<RoyaltiePage> {
           ),
         ],
         currentIndex: 4,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.teal,
         unselectedItemColor: const Color.fromARGB(255, 58, 53, 53),
         showUnselectedLabels: true,
         onTap: _onItemTapped,

@@ -61,6 +61,11 @@ class _IPIPageState extends State<IPIPage> {
   String? ano = null;
   String? mes = null;
   int tipo = 0;
+  
+  List<Color> gradientColors = [
+    Color.fromARGB(255, 105, 8, 8),
+    Color.fromARGB(255, 187, 44, 44),
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -166,7 +171,8 @@ class _IPIPageState extends State<IPIPage> {
                 imposto: widget.title,
                 municipio: municipio,
                 ano: ano,
-                mes: mes),
+                mes: mes,
+                gradientColors: gradientColors,),
           ],
         ),
       ),
