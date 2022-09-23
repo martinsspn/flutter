@@ -24,21 +24,21 @@ class GeradorGrafico extends StatelessWidget {
         List<String> bottomTitles = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
         Map <double, double> valores = {};
         for(int i=0; i<=11; i++){
-          valores.putIfAbsent(i.toDouble(), () => double.parse(Random().nextDouble().toStringAsPrecision(2)) * 11);
+          valores.putIfAbsent(i.toDouble(), () => double.parse(Random().nextDouble().toStringAsFixed(2)) * 11);
         }
         return GraficoDeBarras(label: "2022", bottomTitles: bottomTitles, valores: valores);
       } else if (ano != null && mes == null) {
         List<String> bottomTitles = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
         Map <double, double> valores = {};
         for(int i=0; i<=11; i++){
-          valores.putIfAbsent(i.toDouble(), () => double.parse(Random().nextDouble().toStringAsPrecision(2)) * 11);
+          valores.putIfAbsent(i.toDouble(), () => double.parse(Random().nextDouble().toStringAsFixed(2)) * 11);
         }
         return GraficoDeBarras(label: ano!, bottomTitles: bottomTitles, valores: valores,);
       }else if(ano == null && mes != null){
                 List<String> bottomTitles = ["2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"];
         Map <double, double> valores = {};
         for(int i=0; i<=11; i++){
-          valores.putIfAbsent(i.toDouble(), () => double.parse(Random().nextDouble().toStringAsPrecision(2)) * 11);
+          valores.putIfAbsent(i.toDouble(), () => double.parse(Random().nextDouble().toStringAsFixed(2)) * 11);
         }
         return GraficoDeBarras(label: mes!, bottomTitles: bottomTitles, valores: valores,) ;
       } else if (ano != null && mes != null) {
