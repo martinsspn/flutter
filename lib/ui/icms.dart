@@ -1,4 +1,4 @@
-import 'package:app_transparencia/ui/geradorGraficos.dart';
+import 'package:app_transparencia/ui/graficos/geradorGraficos.dart';
 import 'package:app_transparencia/ui/home.dart';
 import 'package:app_transparencia/ui/infoPage.dart';
 import 'package:app_transparencia/ui/ipi.dart';
@@ -6,7 +6,9 @@ import 'package:app_transparencia/ui/ipva.dart';
 import 'package:app_transparencia/ui/royaltie.dart';
 import 'package:flutter/material.dart';
 
-const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
+const List<String> listMunicipio = <String>['Deixar em branco', 'Natal', 'Parnamirim', 'Mossoro', 'Caico', 'Currais Novos'];
+const List<String> listAno = <String>['Deixar em branco', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011'];
+const List<String> listMes = <String>['Deixar em branco', 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
 class ICMSPage extends StatefulWidget {
   const ICMSPage({Key? key}) : super(key: key);
@@ -79,10 +81,13 @@ class _ICMSPageState extends State<ICMSPage> {
               // isExpanded: true,
               onChanged: (String? value) {
                 setState(() {
-                  municipio = value!;
+                  municipio = value;
+                  if(value == 'Deixar em branco'){
+                    municipio = null;
+                  }
                 });
               },
-              items: list.map<DropdownMenuItem<String>>((String value) {
+              items: listMunicipio.map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -95,10 +100,13 @@ class _ICMSPageState extends State<ICMSPage> {
               // isExpanded: true,
               onChanged: (String? value) {
                 setState(() {
-                  ano = value!;
+                  ano = value;
+                  if(value == 'Deixar em branco'){
+                    ano = null;
+                  }
                 });
               },
-              items: list.map<DropdownMenuItem<String>>((String value) {
+              items: listAno.map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -111,10 +119,13 @@ class _ICMSPageState extends State<ICMSPage> {
               // isExpanded: true,
               onChanged: (String? value) {
                 setState(() {
-                  mes = value!;
+                  mes = value;
+                  if(value == 'Deixar em branco'){
+                    mes = null;
+                  }
                 });
               },
-              items: list.map<DropdownMenuItem<String>>((String value) {
+              items: listMes.map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -122,7 +133,7 @@ class _ICMSPageState extends State<ICMSPage> {
               }).toList(),
               hint: const Text("Mês"),
             ),
-            GeradorGrafico(municipio: municipio, ano: ano, mes: mes),
+            GeradorGrafico(imposto: "ICMS", municipio: municipio, ano: ano, mes: mes),
           ],
         ),
       ),
@@ -145,7 +156,7 @@ class _ICMSPageState extends State<ICMSPage> {
             label: 'IPI',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(Icons.align_vertical_bottom_outlined),
             label: 'Royalties',
           ),
         ],
