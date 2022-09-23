@@ -31,7 +31,7 @@ class _GraficoDeBarrasState extends State<GraficoDeBarras> {
     return Stack(
       children: <Widget>[
         AspectRatio(
-          aspectRatio: 1.5,
+          aspectRatio: 1,
           child: Container(
             decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(

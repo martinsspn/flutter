@@ -25,7 +25,6 @@ class _MyHomePageState extends State<MyHomePage> {
   String label = "Valor Total";
 
   double valorTotal = 10000000000 + Random().nextDouble() * 40000000000;
-  double valor = 0;
 
   bool showTotal = true;
   int lastTouched = -2;
@@ -53,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    double valor = valorTotal;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -127,12 +127,6 @@ class _MyHomePageState extends State<MyHomePage> {
                               }
                               touchedIndex = pieTouchResponse
                                   .touchedSection!.touchedSectionIndex;
-
-                              bool firstInt = true;
-
-                              if (firstInt) {
-                                valor = valorTotal;
-                              }
 
                               if (touchedIndex == 0) {
                                 valor = valorTotal * (40 / 100);
