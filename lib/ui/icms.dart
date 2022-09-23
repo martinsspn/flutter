@@ -103,75 +103,78 @@ class _ICMSPageState extends State<ICMSPage> {
           )
         ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            DropdownButton<String>(
-              value: municipio,
-              // isExpanded: true,
-              onChanged: (String? value) {
-                setState(() {
-                  municipio = value;
-                  if (value == 'Deixar em branco') {
-                    municipio = null;
-                  }
-                });
-              },
-              items:
-                  listMunicipio.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              hint: const Text("Município"),
-            ),
-            DropdownButton<String>(
-              value: ano,
-              // isExpanded: true,
-              onChanged: (String? value) {
-                setState(() {
-                  ano = value;
-                  if (value == 'Deixar em branco') {
-                    ano = null;
-                  }
-                });
-              },
-              items: listAno.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              hint: const Text("Ano"),
-            ),
-            DropdownButton<String>(
-              value: mes,
-              // isExpanded: true,
-              onChanged: (String? value) {
-                setState(() {
-                  mes = value;
-                  if (value == 'Deixar em branco') {
-                    mes = null;
-                  }
-                });
-              },
-              items: listMes.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              hint: const Text("Mês"),
-            ),
-            GeradorGrafico(
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              DropdownButton<String>(
+                value: municipio,
+                // isExpanded: true,
+                onChanged: (String? value) {
+                  setState(() {
+                    municipio = value;
+                    if (value == 'Deixar em branco') {
+                      municipio = null;
+                    }
+                  });
+                },
+                items:
+                    listMunicipio.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                hint: const Text("Município"),
+              ),
+              DropdownButton<String>(
+                value: ano,
+                // isExpanded: true,
+                onChanged: (String? value) {
+                  setState(() {
+                    ano = value;
+                    if (value == 'Deixar em branco') {
+                      ano = null;
+                    }
+                  });
+                },
+                items: listAno.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                hint: const Text("Ano"),
+              ),
+              DropdownButton<String>(
+                value: mes,
+                // isExpanded: true,
+                onChanged: (String? value) {
+                  setState(() {
+                    mes = value;
+                    if (value == 'Deixar em branco') {
+                      mes = null;
+                    }
+                  });
+                },
+                items: listMes.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                hint: const Text("Mês"),
+              ),
+              GeradorGrafico(
                 imposto: widget.title,
                 municipio: municipio,
                 ano: ano,
                 mes: mes,
-                gradientColors: gradientColors,),
-          ],
+                gradientColors: gradientColors,
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
