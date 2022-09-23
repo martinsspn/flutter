@@ -21,19 +21,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // ignore: avoid_init_to_null
-  String? dropdownValue = null;
+  String label = "Valor Total";
 
-  String graficoLabel = "";
+  double valorTotal = 10330560320;
+  double valor = 10330560320;
+  bool showTotal = true;
+  int lastTouched = -2;
+  int x = 0;
 
   int touchedIndex = -1;
-
-  Map<String, double> dataMap = {
-    "ICMS": 45,
-    "IPVA": 30,
-    "IPI": 15,
-    "Royalties": 10
-  };
 
   void _onItemTapped(int index) {
     setState(() {
@@ -104,54 +100,10 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            DropdownButton<String>(
-              value: dropdownValue,
-              // isExpanded: true,
-              onChanged: (String? value) {
-                setState(() {
-                  dropdownValue = value!;
-                });
-              },
-              items: list.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              hint: const Text("Município"),
-            ),
-            DropdownButton<String>(
-              value: dropdownValue,
-              // isExpanded: true,
-              onChanged: (String? value) {
-                setState(() {
-                  dropdownValue = value!;
-                });
-              },
-              items: list.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              hint: const Text("Ano"),
-            ),
-            DropdownButton<String>(
-              value: dropdownValue,
-              // isExpanded: true,
-              onChanged: (String? value) {
-                setState(() {
-                  dropdownValue = value!;
-                });
-              },
-              items: list.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              hint: const Text("Mês"),
-            ),
+            const Text(
+                "Acompanhe aqui os princípais repasses dos impostos no do governo do RN aos múnicipios do estado",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 20)),
             Row(
               children: <Widget>[
                 const SizedBox(
@@ -173,6 +125,23 @@ class _MyHomePageState extends State<MyHomePage> {
                               }
                               touchedIndex = pieTouchResponse
                                   .touchedSection!.touchedSectionIndex;
+
+                              if (touchedIndex == 0) {
+                                valor = valorTotal * (40 / 100);
+                                label = "Valor ICMS";
+                              } else if (touchedIndex == 1) {
+                                valor = valorTotal * (30 / 100);
+                                label = "Valor IPVA";
+                              } else if (touchedIndex == 2) {
+                                valor = valorTotal * (15 / 100);
+                                label = "Valor IPI";
+                              } else if (touchedIndex == 3) {
+                                valor = valorTotal * (15 / 100);
+                                label = "Valor Royalties";
+                              } else {
+                                valor = valorTotal;
+                                label = "Valor Total";
+                              }
                             });
                           }),
                           borderData: FlBorderData(
@@ -226,14 +195,14 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
             Column(
-              children: const [
+              children: [
                 Text(
-                  "Valor total",
-                  style: TextStyle(fontSize: 20, color: Colors.teal),
+                  label,
+                  style: const TextStyle(fontSize: 20, color: Colors.teal),
                 ),
                 Text(
-                  "R\$ 1.323.421,23",
-                  style: TextStyle(fontSize: 28),
+                  valor.toString(),
+                  style: const TextStyle(fontSize: 28),
                 ),
               ],
             )
@@ -264,7 +233,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
         currentIndex: 0,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.teal,
         unselectedItemColor: const Color.fromARGB(255, 58, 53, 53),
         showUnselectedLabels: true,
         onTap: _onItemTapped,

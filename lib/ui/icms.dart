@@ -1,3 +1,4 @@
+import 'package:app_transparencia/ui/geradorGraficos.dart';
 import 'package:app_transparencia/ui/home.dart';
 import 'package:app_transparencia/ui/infoPage.dart';
 import 'package:app_transparencia/ui/ipi.dart';
@@ -18,7 +19,11 @@ class ICMSPage extends StatefulWidget {
 
 class _ICMSPageState extends State<ICMSPage> {
   // ignore: avoid_init_to_null
-  String? dropdownValue = null;
+  String? municipio = null;
+  String? ano = null;
+  String? mes = null;
+  int tipo = 0;
+
 
   Map<String, double> dataMap = {
     "ICMS": 45,
@@ -30,8 +35,8 @@ class _ICMSPageState extends State<ICMSPage> {
   void _onItemTapped(int index) {
     setState(() {
       if (index == 0) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const MyHomePage()));
       } else if (index == 2) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const IPVAPage()));
@@ -59,10 +64,8 @@ class _ICMSPageState extends State<ICMSPage> {
               size: 30,
             ),
             onPressed: () async {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const InfoPage()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const InfoPage()));
             },
           )
         ],
@@ -72,11 +75,11 @@ class _ICMSPageState extends State<ICMSPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             DropdownButton<String>(
-              value: dropdownValue,
+              value: municipio,
               // isExpanded: true,
               onChanged: (String? value) {
                 setState(() {
-                  dropdownValue = value!;
+                  municipio = value!;
                 });
               },
               items: list.map<DropdownMenuItem<String>>((String value) {
@@ -88,11 +91,11 @@ class _ICMSPageState extends State<ICMSPage> {
               hint: const Text("Município"),
             ),
             DropdownButton<String>(
-              value: dropdownValue,
+              value: ano,
               // isExpanded: true,
               onChanged: (String? value) {
                 setState(() {
-                  dropdownValue = value!;
+                  ano = value!;
                 });
               },
               items: list.map<DropdownMenuItem<String>>((String value) {
@@ -104,11 +107,11 @@ class _ICMSPageState extends State<ICMSPage> {
               hint: const Text("Ano"),
             ),
             DropdownButton<String>(
-              value: dropdownValue,
+              value: mes,
               // isExpanded: true,
               onChanged: (String? value) {
                 setState(() {
-                  dropdownValue = value!;
+                  mes = value!;
                 });
               },
               items: list.map<DropdownMenuItem<String>>((String value) {
@@ -119,7 +122,7 @@ class _ICMSPageState extends State<ICMSPage> {
               }).toList(),
               hint: const Text("Mês"),
             ),
-            // PieChart(dataMap: dataMap),
+            GeradorGrafico(municipio: municipio, ano: ano, mes: mes),
           ],
         ),
       ),
