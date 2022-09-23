@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:app_transparencia/indicator.dart';
 import 'package:app_transparencia/ui/icms.dart';
@@ -23,8 +24,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String label = "Valor Total";
 
-  double valorTotal = 10330560320;
-  double valor = 10330560320;
+  double valorTotal = 10000000000 + Random().nextDouble() * 40000000000;
+  double valor = 0;
+
   bool showTotal = true;
   int lastTouched = -2;
   int x = 0;
@@ -101,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-                "Acompanhe aqui os princípais repasses dos impostos no do governo do RN aos múnicipios do estado",
+                "Acompanhe aqui os princípais repasses dos impostos do governo do RN aos múnicipios do estado",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 20)),
             Row(
@@ -125,6 +127,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               }
                               touchedIndex = pieTouchResponse
                                   .touchedSection!.touchedSectionIndex;
+
+                              bool firstInt = true;
+
+                              if (firstInt) {
+                                valor = valorTotal;
+                              }
 
                               if (touchedIndex == 0) {
                                 valor = valorTotal * (40 / 100);
@@ -201,7 +209,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: const TextStyle(fontSize: 20, color: Colors.teal),
                 ),
                 Text(
-                  valor.toString(),
+                  "R\$ ${valor.toStringAsFixed(2)}",
                   style: const TextStyle(fontSize: 28),
                 ),
               ],
@@ -216,19 +224,19 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'Total',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
+            icon: Icon(Icons.add_shopping_cart_rounded),
             label: 'ICMS',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(Icons.car_rental),
             label: 'IPVA',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(Icons.align_vertical_bottom_outlined),
             label: 'IPI',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(Icons.monetization_on),
             label: 'Royalties',
           ),
         ],

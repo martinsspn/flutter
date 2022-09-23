@@ -6,9 +6,44 @@ import 'package:app_transparencia/ui/ipva.dart';
 import 'package:app_transparencia/ui/royaltie.dart';
 import 'package:flutter/material.dart';
 
-const List<String> listMunicipio = <String>['Deixar em branco', 'Natal', 'Parnamirim', 'Mossoro', 'Caico', 'Currais Novos'];
-const List<String> listAno = <String>['Deixar em branco', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011'];
-const List<String> listMes = <String>['Deixar em branco', 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+const List<String> listMunicipio = <String>[
+  'Deixar em branco',
+  'Natal',
+  'Parnamirim',
+  'Mossoro',
+  'Caico',
+  'Currais Novos'
+];
+const List<String> listAno = <String>[
+  'Deixar em branco',
+  '2022',
+  '2021',
+  '2020',
+  '2019',
+  '2018',
+  '2017',
+  '2016',
+  '2015',
+  '2014',
+  '2013',
+  '2012',
+  '2011'
+];
+const List<String> listMes = <String>[
+  'Deixar em branco',
+  'Janeiro',
+  'Fevereiro',
+  'Março',
+  'Abril',
+  'Maio',
+  'Junho',
+  'Julho',
+  'Agosto',
+  'Setembro',
+  'Outubro',
+  'Novembro',
+  'Dezembro'
+];
 
 class ICMSPage extends StatefulWidget {
   const ICMSPage({Key? key}) : super(key: key);
@@ -25,14 +60,10 @@ class _ICMSPageState extends State<ICMSPage> {
   String? ano = null;
   String? mes = null;
   int tipo = 0;
-
-
-  Map<String, double> dataMap = {
-    "ICMS": 45,
-    "IPVA": 30,
-    "IPI": 15,
-    "Royalties": 10
-  };
+  List<Color> gradientColors = [
+    const Color(0xff0293ee),
+    const Color(0xff02d39a),
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -82,12 +113,13 @@ class _ICMSPageState extends State<ICMSPage> {
               onChanged: (String? value) {
                 setState(() {
                   municipio = value;
-                  if(value == 'Deixar em branco'){
+                  if (value == 'Deixar em branco') {
                     municipio = null;
                   }
                 });
               },
-              items: listMunicipio.map<DropdownMenuItem<String>>((String value) {
+              items:
+                  listMunicipio.map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -101,7 +133,7 @@ class _ICMSPageState extends State<ICMSPage> {
               onChanged: (String? value) {
                 setState(() {
                   ano = value;
-                  if(value == 'Deixar em branco'){
+                  if (value == 'Deixar em branco') {
                     ano = null;
                   }
                 });
@@ -120,7 +152,7 @@ class _ICMSPageState extends State<ICMSPage> {
               onChanged: (String? value) {
                 setState(() {
                   mes = value;
-                  if(value == 'Deixar em branco'){
+                  if (value == 'Deixar em branco') {
                     mes = null;
                   }
                 });
@@ -133,7 +165,12 @@ class _ICMSPageState extends State<ICMSPage> {
               }).toList(),
               hint: const Text("Mês"),
             ),
-            GeradorGrafico(imposto: "ICMS", municipio: municipio, ano: ano, mes: mes),
+            GeradorGrafico(
+                imposto: widget.title,
+                municipio: municipio,
+                ano: ano,
+                mes: mes,
+                gradientColors: gradientColors,),
           ],
         ),
       ),
@@ -144,24 +181,24 @@ class _ICMSPageState extends State<ICMSPage> {
             label: 'Total',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
+            icon: Icon(Icons.add_shopping_cart_rounded),
             label: 'ICMS',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(Icons.car_rental),
             label: 'IPVA',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(Icons.align_vertical_bottom_outlined),
             label: 'IPI',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.align_vertical_bottom_outlined),
+            icon: Icon(Icons.monetization_on),
             label: 'Royalties',
           ),
         ],
         currentIndex: 1,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.teal,
         unselectedItemColor: const Color.fromARGB(255, 58, 53, 53),
         showUnselectedLabels: true,
         onTap: _onItemTapped,

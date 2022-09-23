@@ -2,22 +2,19 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class GraficoDeBarras extends StatefulWidget {
-  const GraficoDeBarras({Key? key, required this.label, required this.bottomTitles, required this.valores}) : super(key: key);
+  const GraficoDeBarras({Key? key, required this.label, required this.bottomTitles, required this.valores, required this.gradientColors}) : super(key: key);
 
   final List<String> bottomTitles;
   final String label;
   final Map<double, double> valores;
+  final List<Color> gradientColors;
 
   @override
   _GraficoDeBarrasState createState() => _GraficoDeBarrasState();
 }
 
 class _GraficoDeBarrasState extends State<GraficoDeBarras> {
-  List<Color> gradientColors = [
-    const Color(0xff0293ee),
-    const Color(0xff02d39a),
-  ];
-
+  
   bool showAvg = false;
   
   List<FlSpot> getSpots(){
@@ -34,7 +31,7 @@ class _GraficoDeBarrasState extends State<GraficoDeBarras> {
     return Stack(
       children: <Widget>[
         AspectRatio(
-          aspectRatio: 1,
+          aspectRatio: 1.5,
           child: Container(
             decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(
@@ -157,7 +154,7 @@ class _GraficoDeBarrasState extends State<GraficoDeBarras> {
           spots: getSpots(),
           isCurved: true,
           gradient: LinearGradient(
-            colors: gradientColors,
+            colors: widget.gradientColors,
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),
@@ -169,7 +166,7 @@ class _GraficoDeBarrasState extends State<GraficoDeBarras> {
           belowBarData: BarAreaData(
             show: true,
             gradient: LinearGradient(
-              colors: gradientColors
+              colors: widget.gradientColors
                   .map((color) => color.withOpacity(0.3))
                   .toList(),
               begin: Alignment.centerLeft,
